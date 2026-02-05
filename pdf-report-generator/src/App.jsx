@@ -7,6 +7,7 @@ import { generatePDF } from './utils/pdfGenerator';
 
 function App() {
   const [history, setHistory] = useState([]);
+  const [loading] = useState(false);
 
   useEffect(() => {
     const savedHistory = localStorage.getItem('pdfHistory');
@@ -20,8 +21,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('pdfHistory', JSON.stringify(history));
-  }, [history]);
+    if(!loading){
+      localStorage.setItem('pdfHistory', JSON.stringify(history));
+    }
+  }, [history, loading]);
 
   const handleGeneratePDF = async (formData) => {
     try {
@@ -46,6 +49,24 @@ function App() {
     }
   };
 
+  const handleDownloadPDF = (item) => {
+    try{
+      const pdfData = {
+        pageSize: item.pageSize,
+        title: item.title,
+        description: item.description,
+        nominal: item.nominal,
+      }
+
+      generatePDF(pdfData);
+      toast.success('PDF berhasil di-download! ');
+
+    }catch(error){
+      console.error('Error downloading PDF:', error);
+      toast.error('Gagal download PDF. Silakan coba lagi.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Toaster position="top-right" reverseOrder={false} />
@@ -54,7 +75,7 @@ function App() {
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-5xl mx-auto space-y-8">
           <FormSection onSubmit={handleGeneratePDF} />
-          <HistoryTable history={history} />
+          <HistoryTable history={history} onDownload={handleDownloadPDF} />
         </div>
       </main>
       
