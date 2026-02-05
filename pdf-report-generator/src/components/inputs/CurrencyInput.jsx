@@ -1,4 +1,3 @@
-import { AlertCircle } from "lucide-react";
 const CurrencyInput = ({
     label, 
     value,
@@ -36,7 +35,7 @@ const CurrencyInput = ({
             </div>
             {error && (
                 <p className="text-red-500 text-sm mt-1">
-                    <span><AlertCircle /></span> {error}
+                    {error}
                 </p>
             )}
             {value && !error && (

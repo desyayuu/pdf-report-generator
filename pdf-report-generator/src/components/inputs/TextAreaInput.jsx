@@ -1,5 +1,3 @@
-import { AlertCircle } from "lucide-react";
-
 const TextAreaInput = ({
     label,
     value,
@@ -26,7 +24,7 @@ const TextAreaInput = ({
             />
             {error && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                    <span><AlertCircle /></span> {error}
+                    {error}
                 </p>
             )}
         </div>

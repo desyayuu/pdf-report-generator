@@ -1,5 +1,3 @@
-import { AlertCircle } from 'lucide-react';
-
 const DropdownInput = ({ 
     label, 
     value, 
@@ -29,7 +27,7 @@ const DropdownInput = ({
         </select>
         {error && (
             <p className="text-red-500 text-sm flex items-center gap-1">
-                <span><AlertCircle /></span> {error}
+                {error}
             </p>
         )}
         </div>
