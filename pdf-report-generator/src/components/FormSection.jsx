@@ -42,8 +42,8 @@ const FormSection = ({onSubmit}) => {
       newErrors.description = 'Deskripsi laporan wajib diisi.';
     } else if(formData.description.length < 10){
       newErrors.description = 'Deskripsi laporan minimal 10 karakter.';
-    } else if(formData.description.split('\n').length > 4)
-      newErrors.description = 'Deskripsi laporan maksimal 4 baris.';
+    } else if(formData.description.split('\n').length < 4)
+      newErrors.description = 'Deskripsi laporan minimal 4 baris.';
 
     if(!formData.nominal || formData.nominal === '0'){
       newErrors.nominal = 'Nominal wajib diisi.';
@@ -127,7 +127,7 @@ const FormSection = ({onSubmit}) => {
               setErrors({ ...errors, description: '' });
             }}
             placeholder="Masukkan deskripsi laporan..."
-            rows={5}
+            rows={4}
             error={errors.description}
             required
           />
