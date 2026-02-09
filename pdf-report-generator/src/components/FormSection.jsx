@@ -69,14 +69,7 @@ const FormSection = ({onSubmit}) => {
 
     try{
       await onSubmit(formData);
-
-      setFormData({
-        pageSize: 'A4',
-        title: '',
-        description: '',
-        nominal: '',
-      });
-      setErrors({});
+      handleReset();
     } catch(error){
       console.error('Error generating PDF', error);
     } finally {
@@ -99,16 +92,6 @@ const FormSection = ({onSubmit}) => {
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Form Generate PDF
         </h2>
-        {(formData.title || formData.description || formData.nominal) && (
-          <button
-            type="button"
-            className="mb-4 text-sm text-red-600 hover:underline"
-            onClick={handleReset}
-          >
-            Reset Form
-          </button>
-        )
-        }
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <DropdownInput

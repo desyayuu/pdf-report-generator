@@ -1,4 +1,4 @@
-import { Calendar, FileText, DollarSign, Download} from 'lucide-react';
+import { Calendar, FileText, Download} from 'lucide-react';
 
 const HistoryTable = ({ history, onDownload }) => {
   const formatCurrency = (num) => {
