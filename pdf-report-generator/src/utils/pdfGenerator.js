@@ -97,11 +97,11 @@ export const generatePDF = (data) => {
     const formattedNominal = `Rp ${nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
     
     pdf.setFontSize(16);
-    pdf.setTextColor(37, 99, 235); // Blue-600
+    pdf.setTextColor(37, 99, 235); 
     pdf.text(formattedNominal, margin, yPosition);
 
     // Save PDF
-    const fileName = `${title.replace(/\s+/g, '_')}_${Date.now().toLocaleString('id-ID')}.pdf`;
+    const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
     pdf.save(fileName);
     
     return fileName;
